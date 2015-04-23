@@ -24,16 +24,7 @@
  */
 
 var bind = function() {
-  var outerArgs = Array.prototype.slice.call(arguments);
-  var func = outerArgs[0];
-  var context =  outerArgs[1];
 
-  return function(){
-    var innerArgs = Array.prototype.slice.call(arguments);
-    var args = outerArgs.slice(2).concat(innerArgs);
-
-    return func.apply(context, args);
-  };
 };
 
 /*

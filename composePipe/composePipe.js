@@ -34,22 +34,9 @@
 'use strict';
 
 var compose = function(){
-  var args = Array.prototype.slice.call(arguments);
-
-  return function(val){
-    return args.reduceRight(function(memento, curr){
-      return curr(memento);
-    }, val);
-  }
 
 };
 
 var pipe = function(){
-  var args = Array.prototype.slice.call(arguments);
 
-  return function(val){
-    return args.reduce(function(memento, curr){
-      return curr(memento);
-    }, val);
-  }
 };

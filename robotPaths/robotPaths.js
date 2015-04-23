@@ -32,27 +32,6 @@ var makeBoard = function(n) {
 };
 
 var robotPaths = function(n, board, i, j) {
-  /* START SOLUTION */
-  board = board || makeBoard(n);
-  i = i || 0;
-  j = j || 0;
-  n = n || 5;
 
-  if(i < 0 || j < 0 || i > n - 1 || j > n - 1 || board.hasBeenVisited(i, j)) {
-    return 0;
-  }
-
-  if(i === n-1 && j === n-1){
-    return 1;
-  }
-
-  board.togglePiece(i, j);
-
-  var result = robotPaths(n, board, i + 1, j) + robotPaths(n, board, i - 1, j) + robotPaths(n, board, i, j + 1) + robotPaths(n, board, i, j - 1);
-
-  board.togglePiece(i, j);
-
-  return result;
-  /* END SOLUTION */
 };
 

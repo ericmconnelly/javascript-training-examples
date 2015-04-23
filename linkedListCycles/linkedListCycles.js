@@ -32,28 +32,9 @@
  */
 
 var Node = function(value) {
-  return {
-    value: value,
-    next: null
-  };
+
 };
 
 var hasCycle = function(linkedList) {
-  var slow = linkedList;
-  var fast = linkedList;
-  var pause = true;
 
-  while(fast = fast.next){
-    if(slow.value === fast.value){
-      return true;
-    }
-
-    if(!pause){
-      slow = slow.next;
-    }
-
-    pause = !pause;
-  }
-
-  return false;
 };

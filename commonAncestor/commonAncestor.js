@@ -40,27 +40,7 @@ Tree.prototype.addChild = function(child) {
  */
 // The this context needs to be the family matriarch
 Tree.prototype.getClosestCommonAncestor = function(person1, person2) {
-  var closest = null;
-  if(person1 === person2) {
-    return person1.val;
-  }
 
-  var person1Path = this.getAncestorPath(person1);
-  var person2Path = this.getAncestorPath(person2);
-
-  if(person1Path && person2Path){
-    var index = person2Path.length - 1;
-    for(var i = person1Path.length - 1; i >= 0; i--) {
-      if(person2Path[index] && person2Path[index] === person1Path[i]) {
-        closest = person1Path[i];
-        break;
-      }
-
-      index -= 1;
-    }
-  }
-
-  return closest;
 };
 
 /**
@@ -72,24 +52,7 @@ Tree.prototype.getClosestCommonAncestor = function(person1, person2) {
  * 4.) grandma.getAncestorPath(noOne) -> null
  */
 Tree.prototype.getAncestorPath = function(person) {
-  var path = null;
-  if(this === person) {
-    return [this.val];
-  }
 
-  var ancestorPath = function(node, nodeArray) {
-    if(node.children.indexOf(person) !== -1) {
-      return path = nodeArray.concat(person.val);
-    } else {
-      for(var i = 0; i < node.children.length; i++) {
-        ancestorPath(node.children[i], nodeArray.concat(node.children[i].val));
-      }
-    }
-  };
-
-  ancestorPath(this, [this.val]);
-
-  return path;
 };
 
 /**
