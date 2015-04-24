@@ -39,13 +39,10 @@ var compose = function(){
   // continue until array is empty
   var args = Array.prototype.slice.call(arguments);
   
-  console.log(args);
-  
-  return function(value){
-    var func = args.pop();
-    while(args){
-      return func(value);
-    }
+  return function(){
+    args.reduceRight(memo, val){
+      memo += val;
+    };
   };
 };
 
