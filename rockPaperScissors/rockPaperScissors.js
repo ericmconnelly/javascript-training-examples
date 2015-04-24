@@ -17,29 +17,27 @@
  *
  */
 
-var rockPaperScissors = function( rounds ){
-  var rps = ['rock', 'paper', 'scissors'];
-  // create a result array
-  result = [];
-  rounds = rounds || 3;
+var rockPaperScissors = function (rounds) {
+  var result = [];
+  var rps = ["rock", "paper", "scissors"];
 
-
-  var recurse = function(recurseIdx, turn){
-    var turn = turn || [];
-
+  var recurse = function(tempArray){
     // base case
-    if( recurseIdx === rounds ){
-      result.push(turn);
+    if (tempArray.length === rounds) {
+      result.push(tempArray);
       return;
     }
 
+    // iterate over each possible outcome
     for (var i = 0; i < rps.length; i++) {
-      turn.push(rps[i]);
-      recurse(recurseIdx+1, turn);
+      var copyArray = tempArray.slice();
+      copyArray.push( rps[i] );
+      recurse( copyArray );
     }
+
   };
-  
-  recurse(0);
+
+  recurse([]);
 
   return result;
-};
+}
