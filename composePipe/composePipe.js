@@ -34,7 +34,19 @@
 'use strict';
 
 var compose = function(){
-
+  // set array from arguments
+  // pop last element and return it
+  // continue until array is empty
+  var args = Array.prototype.slice.call(arguments);
+  
+  console.log(args);
+  
+  return function(value){
+    var func = args.pop();
+    while(args){
+      return func(value);
+    }
+  };
 };
 
 var pipe = function(){
