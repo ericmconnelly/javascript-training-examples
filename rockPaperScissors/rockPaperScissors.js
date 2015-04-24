@@ -24,21 +24,19 @@ var rockPaperScissors = function( rounds ){
   rounds = rounds || 3;
 
 
-  var recurse = function(index, turn){
+  var recurse = function(recurseIdx, turn){
     var turn = turn || [];
 
     // base case
-    if( index === rounds ){
+    if( recurseIdx === rounds ){
       result.push(turn);
       return;
     }
 
     for (var i = 0; i < rps.length; i++) {
       turn.push(rps[i]);
-      recurse(index+1, turn);
+      recurse(recurseIdx+1, turn);
     }
-
-    result.push(turn)
   };
   
   recurse(0);
