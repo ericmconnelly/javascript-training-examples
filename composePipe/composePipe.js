@@ -31,21 +31,34 @@
  *  pipe(add2, multiplyBy3, multiplyBy3)(5) // 63
  */
 
+// set array from arguments
+  // return pop last element and return it
+    // take last element
+    // run it with the memorized item
+    // continue until args is empty
+    // return the current function ran with 'accumulated' one
+      
 'use strict';
 
 var compose = function(){
   // set array from arguments
-  // pop last element and return it
-  // continue until array is empty
   var args = Array.prototype.slice.call(arguments);
   
-  return function(){
-    args.reduceRight(memo, val){
-      memo += val;
-    };
+  return function( val ){
+    // return pop last element and return it
+    return args.reduceRight( function(memo, current){
+      // return the current function ran with 'accumulated' one
+      return current(memo);
+    }, val );
   };
 };
 
 var pipe = function(){
-
+  var args = Array.prototype.slice.call(arguments);
+  
+  return function( val ){
+    return args.reduce( function(memo, current){
+      return current(memo);
+    }, val );
+  };
 };
