@@ -35,10 +35,10 @@ var rockPaperScissors = function( rounds ){
 
     for (var i = 0; i < rps.length; i++) {
       turn.push(rps[i]);
+      recurse(index+1, turn);
     }
 
     result.push(turn)
-    recurse(index+1, turn);
   };
   
   recurse(0);
