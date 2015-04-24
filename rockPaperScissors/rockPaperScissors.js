@@ -17,5 +17,19 @@
  *
  */
 
-var rockPaperScissors = function (rounds) {
+var rockPaperScissors = function( rounds, result ){
+  var rps = ['rock', 'paper', 'scissors'];
+  // create a result array
+  result = result || [];
+  rounds = rounds || 3;
+
+  result.push([ rps[i] ]);
+  
+  for (var i = 0; i < rps.length; i++) {
+    
+  }
+  
+  rockPaperScissors( rounds-1, result );
+
+  return result;
 };
