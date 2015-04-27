@@ -23,6 +23,41 @@
  *
  *
  */
-var balancedParens = function(input) {
 
+/* Time complexity: O(n) */
+var balancedParens = function(input) {
+  // implement a stack
+  var stack = [];
+  var pairs = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+  };
+
+  var closing = {
+    ')': true,
+    ']': true,
+    '}': true
+  };
+
+  // iterate through input characters
+  for (var i = 0; i < input.length; i++) {
+    var chr = input[i];
+    // if opening paren, add to stack
+    if( chr in pairs ){
+      stack.push( pairs[chr] );
+    // if closing paren, pop last paren from stack
+    } else if( closing[chr] ) {
+      // if doesn't matches, return false
+      if( stack.pop() !==  chr ) return false;
+    }
+    // otherwise continue to next paren in input
+  }
+
+  // return true if all parens are poped
+  if( stack.length === 0 ){
+    return true;
+  } else {
+    return false;
+  }
 };
