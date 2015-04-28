@@ -30,12 +30,36 @@
  *
  */
 
-// Introduce i into the global scope so we can test function efficiency
-var i;
-
-// Feel free to add helper functions if needed.
-
-
 var bubbleSort = function(array) {
+  var len = array.length;
+  
+  // iterate through each value in array
+  for (var i = 0; i < len; i++) {
+    var swaps = 0;
+    // iterate again on values between 0 and external for loop
+    for (var j = 0; j < len - 1 - i; j++) {
+      // if curr > curr+1, swap values
+      if( array[j] > array[j+1] ){
+        swap(j, j+1, array);
+        swaps++;
+      }
+    }
+    if(swaps === 0){ return array; }
+  }
 
+  // return array
+  return array;
 };
+
+var swap = function(i, j, array){
+  var temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+
+  return array;
+};
+
+/*
+ * Optization: Implement swap count to check whether array is already sorted
+ * Time complexity; O(n^2)
+ */

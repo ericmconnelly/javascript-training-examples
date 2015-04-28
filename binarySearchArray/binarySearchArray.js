@@ -16,8 +16,9 @@ var binarySearch = function(array, target) {
 
   var recurse = function(low, high){
     // if low is also high, then index isn't found
-    if( high === low ){ return null; }
-
+    if( high === low || array.length === 1) return null;
+    if( array.length === 1 && target > array.length ) return null;
+    
     var mid = Math.floor((high - low)/2) + low;
 
     // if target found, return index
