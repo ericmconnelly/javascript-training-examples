@@ -35,6 +35,7 @@
  *
  */
 
+
 var characterFrequency = function(string) {
   var letters = {};
   var result = [];
