@@ -24,7 +24,63 @@
  makeChange(2) === 2
  */
 
+// Implementation 1: bad efficiency - takes 6443 ms for input of 500
+/*
 var makeChange = function(total) {
+  var denominations = [1, 2, 5, 10, 20, 50, 100, 200];
 
+  if( total === 0 ) return 1;
+  var count = 0;
+
+  var recurse = function(remain, start){
+    for (var i = start; i < denominations.length; i++) {
+      var change = remain - denominations[i];
+
+      if( change < 0){
+        return;
+      }
+      
+      if( change === 0 ){
+        return count++;
+      }
+
+      if( change > 0 ){
+        recurse( change, i );
+      }
+    }
+    
+  };
+
+  recurse(total, 0);
+
+  return count;
+};
+*/
+
+// Implementation 2:
+var makeChange = function(total) {
+  var count = 0;
+  var denominations = [1, 2, 5, 10, 20, 50, 100, 200];
+
+  var recurse = function(index, remain){
+    
+  }
+
+  recurse( denominations.length-1, total);
+
+  return count;
 };
 
+
+
+var timeTest = function(input){
+  var start = new Date().getTime();
+  
+  var answer = makeChange(input);
+  
+  var end = new Date().getTime();
+
+  var time = end - start;
+
+  return ('The answer is ' + answer + ' and it took: ' + time + ' ms.');
+};
