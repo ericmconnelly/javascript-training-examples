@@ -39,7 +39,7 @@ var characterFrequency = function(string) {
   var letters = {};
   var result = [];
 
-  // edge case: not a string or empty string
+  // edge case, not a string or empty string
   if (typeof string !== 'string' || !string.length) return [];
 
   // iterate through each letter in string
