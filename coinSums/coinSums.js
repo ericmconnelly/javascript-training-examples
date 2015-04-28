@@ -57,17 +57,36 @@ var makeChange = function(total) {
 };
 */
 
-// Implementation 2:
+// Implementation 2: good efficiency - takes takes 66 ms for input of 500
+// Difference: ---
 var makeChange = function(total) {
   var count = 0;
   var denominations = [1, 2, 5, 10, 20, 50, 100, 200];
 
   var recurse = function(index, remain){
-    
-  }
+    // current denomination is denomination at index
+    var currDenomination = denominations[index];
+    // if index is 0
+    if( index === 0 ){
+      // return remain mod current denomination and increment count
+      remain % currDenomination;
+      count++;
+      return;
+    }
 
-  recurse( denominations.length-1, total);
+    // while remain is above 0
+    while( remain >= 0 ){
+      // recurse on: ( index - 1 and remain )
+      recurse( index-1, remain);
+      // remain = remain - current denomination
+      remain -= currDenomination;
+    }
+  };
 
+  // call recurse fn for first round
+  recurse( denominations.length-1, total );
+
+  // return count
   return count;
 };
 
