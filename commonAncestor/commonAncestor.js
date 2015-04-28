@@ -40,7 +40,20 @@ Tree.prototype.addChild = function(child) {
  */
 // The this context needs to be the family matriarch
 Tree.prototype.getClosestCommonAncestor = function(person1, person2) {
+  var path1 = this.getAncestorPath(person1);
+  if( !path1 ) return null;
 
+  var path2 = this.getAncestorPath(person2);
+  if( !path2 ) return null;
+  
+  var len = Math.min(path1.length, path2.length);
+  for (var i = 0; i < len; i++) {
+    if(path1[i] === path2[i]){
+      closestAncestor = path1[i];
+    }
+  }
+
+  return closestAncestor;
 };
 
 /**
@@ -51,8 +64,32 @@ Tree.prototype.getClosestCommonAncestor = function(person1, person2) {
  * 3.) me.getAncestorPath(me) -> [me]
  * 4.) grandma.getAncestorPath(noOne) -> null
  */
-Tree.prototype.getAncestorPath = function(person) {
+Tree.prototype.getAncestorPath = function(child) {
+  var ancestors = null;
 
+  if( this === child ){
+    return [this.val];
+  }
+
+  var recurse = function( node, path){
+    // if child is present, concat path with child value
+    if( node.children.indexOf(child) !== -1 ){
+      // set ancestors as path taken 
+      return ancestors = path.concat( child.val );
+    // else, iterate through children
+    } else {
+      for (var i = 0; i < node.children.length; i++) {
+        // recurse on each
+        recurse( node.children[i], path.concat(node.children[i].val) );
+      }
+    }
+
+  };
+  
+  // return path
+  recurse( this, [this.val] );
+  
+  return ancestors;
 };
 
 /**
