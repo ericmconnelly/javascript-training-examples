@@ -11,29 +11,36 @@
  */
 
 
-var commonCharacters = function(string1, string2) {
+var commonCharacters = function() {
   var common = {};
   var result = '';
 
-  if( typeof string1 !== 'string' || typeof string1 !== 'string' ){
-    return null;
-  }
+  // if( typeof string1 !== 'string' || typeof string1 !== 'string' ){
+  //   return null;
+  // }
 
-  for (var i = 0; i < string1.length; i++) {
-    common[ string1[i] ] = 1;
-  }
+  var insertChr = function(str){
+    str = str.toLowerCase();
+    var temp = {};
 
-  for (var i = 0; i < string2.length; i++) {
-    console.log(string2);
-    
-    if( common[ string2[i] ] ){
-      common[ string2[i] ] += 1;
+    for (var i = 0; i < str.length; i++) {
+      var chr = str.charAt(i);
+
+      if( common[ chr ] === undefined && chr !== ' ' ) common[ chr ] = 0;
+      if( temp[ chr ] === undefined ) temp[ chr ] = 0;
+
+      temp[ chr ]++;
+
+      if( temp[ chr ] === 1 ) common[ chr ]++;
     }
-  }
+  };
 
+  for (var i = 0; i < arguments.length; i++) {
+    insertChr( arguments[i] );
+  }
 
   for(chr in common){
-    if( common[chr] > 1 ){
+    if( common[chr] === arguments.length ){
       result += chr;
     }
   }
