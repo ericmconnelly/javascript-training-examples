@@ -11,6 +11,24 @@
  * don't worry about handling cyclical object structures.
  *
  */
-var deepEquals = function(apple, orange) {
 
+var deepEquals = function(obj1, obj2, result) {
+  result = result || false;
+
+  for(key in obj1){
+    // if value is object, recurse
+    if( typeof obj1[key] === 'object' && typeof obj2[key] === 'object' ){
+      return deepEquals( obj1[key], obj2[key] );
+    }
+
+    // if obj1's value isn't equal to obj2's value
+    // set result as false, else set to true
+    obj1[key] !== obj2[key] ? result = false : result = true;
+  }
+
+  return result;
 };
+
+/*
+ * Time complexity: O(n)
+ */
