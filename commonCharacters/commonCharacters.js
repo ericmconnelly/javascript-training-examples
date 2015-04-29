@@ -12,5 +12,31 @@
 
 
 var commonCharacters = function(string1, string2) {
+  var common = {};
+  var result = '';
 
+  if( typeof string1 !== 'string' || typeof string1 !== 'string' ){
+    return null;
+  }
+
+  for (var i = 0; i < string1.length; i++) {
+    common[ string1[i] ] = 1;
+  }
+
+  for (var i = 0; i < string2.length; i++) {
+    console.log(string2);
+    
+    if( common[ string2[i] ] ){
+      common[ string2[i] ] += 1;
+    }
+  }
+
+
+  for(chr in common){
+    if( common[chr] > 1 ){
+      result += chr;
+    }
+  }
+
+  return result;
 };

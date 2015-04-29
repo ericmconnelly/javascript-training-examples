@@ -67,28 +67,21 @@ Tree.prototype.getClosestCommonAncestor = function(person1, person2) {
 Tree.prototype.getAncestorPath = function(child) {
   var ancestors = null;
 
-  if( this === child ){
-    return [this.val];
-  }
-
-  var recurse = function( node, path){
+  var recurse = function(ancestor, path){
     // if child is present, concat path with child value
-    if( node.children.indexOf(child) !== -1 ){
+    if( ancestor.children.indexOf(child) !== -1 ){
       // set ancestors as path taken 
       return ancestors = path.concat( child.val );
     // else, iterate through children
     } else {
-      for (var i = 0; i < node.children.length; i++) {
+      for (var i = 0; i < ancestor.children.length; i++) {
         // recurse on each
-        recurse( node.children[i], path.concat(node.children[i].val) );
+        recurse( ancestor.children[i], path.concat(ancestor.children[i].val) );
       }
     }
-
   };
-  
-  // return path
-  recurse( this, [this.val] );
-  
+
+  recurse(this, [this.val]);
   return ancestors;
 };
 
