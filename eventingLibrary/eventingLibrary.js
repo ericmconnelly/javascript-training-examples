@@ -22,4 +22,25 @@
 
 var mixEvents = function(obj) {
 
+  var events = {};
+
+  obj.on = function(event, cb){
+    // if no event, set event as an empty array
+    events[event] = events[event] || [];
+    // push the callback in array
+    events[event].push(cb);
+  };
+
+  obj.trigger = function(event){
+    // if event is in events obj
+    if( events[event] ){
+      var args = Array.prototype.slice.call(1, arguments);
+      // apply cb to object with all arguments
+      events[event].forEach(function(cb){
+        cb.apply(obj, args);
+      });
+    }
+  }
+
+  return obj;
 };
