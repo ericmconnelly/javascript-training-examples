@@ -28,10 +28,6 @@ var bind = function(fn, context) {
 
   return function(){
     var args = Array.prototype.slice.call( arguments );
-    
-    console.log( firstArgs )
-    console.log( args )
-    
     args = firstArgs.concat( args );
 
     return fn.apply(context, args);
