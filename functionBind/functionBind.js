@@ -23,8 +23,19 @@
  *
  */
 
-var bind = function() {
+var bind = function(fn, context) {
+  var firstArgs = Array.prototype.slice.call( arguments, 2 );
 
+  return function(){
+    var args = Array.prototype.slice.call( arguments );
+    
+    console.log( firstArgs )
+    console.log( args )
+    
+    args = firstArgs.concat( args );
+
+    return fn.apply(context, args);
+  };
 };
 
 /*
@@ -52,15 +63,14 @@ var bind = function() {
  *
  */
 
-Function.prototype.bind = function() {
-  var outerArgs = Array.prototype.slice.call(arguments);
-  var func = this;
-  var context =  outerArgs[0];
+Function.prototype.bind = function( context ) {
+  var firstArgs = Array.prototype.slice.call(arguments, 1);
+  var fn = this;
 
   return function(){
-    var innerArgs = Array.prototype.slice.call(arguments);
-    var args = outerArgs.slice(1).concat(innerArgs);
+    var args = Array.prototype.slice.call(arguments);
+    args = firstArgs.concat( args );
 
-    return func.apply(context, args);
+    return fn.apply(context, args);
   };
 };

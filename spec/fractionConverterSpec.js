@@ -10,4 +10,7 @@ describe("fractionConverter", function() {
   it("should convert to '5/2'", function() {
     expect(toFraction(2.5)).to.be.equal('5/2');
   });
+  it("should convert to '-6/5'", function() {
+    expect(toFraction(-1.2)).to.be.equal('-6/5');
+  });
 });
